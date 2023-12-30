@@ -2,8 +2,7 @@
 let num1;
 let operator;
 let num2;
-
-
+let result;
 
 let numButtons = document.querySelectorAll('.btn-num');
 let operatorButtons = document.querySelectorAll('.btn-operator');
@@ -13,6 +12,13 @@ let screenLast = document.querySelector('.screen-last');
 
 let operatorSelected = false;
 
+function resetScreenCurrent() {
+    screenCurrent.textContent = '';
+}
+
+function resetScreenLast() {
+    screenLast.textContent = '';
+}
 
 function getNumButtons() {
     numButtons.forEach((button) => {
@@ -29,33 +35,32 @@ function getOperatorButtons() {
 function setNum(number) {
     if (operatorSelected === false) {
         screenCurrent.textContent += number;
-        num1 = screenCurrent.textContent;
     } else {
         screenCurrent.textContent += number;
-        
-    }
-}
-
-function setOperator(op) {
-    if (operatorSelected === false) {
-        screenLast.textContent = screenCurrent.textContent + ' ' + op;
-        operator = op;
-        screenCurrent.textContent = '';
-        operatorSelected = true;
+        num2 = parseInt(screenCurrent.textContent);
         calculate();
     }
 }
 
+function setOperator(op) {
+    if (operatorSelected === false && screenCurrent.textContent !== '') {
+        num1 = parseInt(screenCurrent.textContent);
+        operator = op;
+        screenLast.textContent = num1 + ' ' + op;
+        resetScreenCurrent();
+        operatorSelected = true;
+    } 
+}
 
 function calculate() {
     equalsButton.addEventListener('click', () => {
-        num2 = screenCurrent.textContent;
-        console.log(num1, num2, operator);
-    })
-} 
+        operate(operator, num1, num2);
+    }, {once: true})
+}
 
+function clearCalculator() {
 
-
+}
 
 
 function add(a, b) {
@@ -75,12 +80,49 @@ function divide(a, b) {
 }
 
 function operate(operator, num1, num2) {
-     return operator(num1, num2);
+    switch(operator) {
+        case '+':
+            result = add(num1, num2);
+            resetScreenCurrent();
+            resetScreenLast();
+            screenCurrent.textContent += result;
+            operatorSelected = false;
+            break;
+        case '-':
+            result = subtract(num1, num2);
+            resetScreenCurrent();
+            resetScreenLast();
+            screenCurrent.textContent += result;
+            operatorSelected = false;
+            break;
+        case 'x':
+            result = multiply(num1, num2);
+            resetScreenCurrent();
+            resetScreenLast();
+            screenCurrent.textContent += result;
+            operatorSelected = false;
+            break;
+        case '÷':
+            if(num2 === 0) {
+                resetScreenCurrent();
+                resetScreenLast();
+                operatorSelected = false;
+                break;
+            } else {
+                result = divide(num1, num2);
+                resetScreenCurrent();
+                resetScreenLast();
+                screenCurrent.textContent += result;
+                operatorSelected = false;
+                break;
+            }
+    }
 }
 
 
 getNumButtons();
 getOperatorButtons();
+clearCalculator();
 
 
 // use switch statement for operate function

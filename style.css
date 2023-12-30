@@ -37,12 +37,10 @@ body {
 
 .screen-last {
     font-size: 30px;
-    border: 2px solid red;
 }
 
 .screen-current {
     font-size: 40px;
-    border: 2px solid blue;
 }
 
 .clear-delete-buttons {
