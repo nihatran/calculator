@@ -7,6 +7,8 @@ let result;
 let numButtons = document.querySelectorAll('.btn-num');
 let operatorButtons = document.querySelectorAll('.btn-operator');
 let equalsButton = document.querySelector('.btn-equals');
+let clearButton = document.querySelector('#clear');
+let deleteButton = document.querySelector('#delete')
 let screenCurrent = document.querySelector('.screen-current');
 let screenLast = document.querySelector('.screen-last');
 
@@ -37,14 +39,14 @@ function setNum(number) {
         screenCurrent.textContent += number;
     } else {
         screenCurrent.textContent += number;
-        num2 = parseInt(screenCurrent.textContent);
+        num2 = parseFloat(screenCurrent.textContent);
         calculate();
     }
 }
 
 function setOperator(op) {
     if (operatorSelected === false && screenCurrent.textContent !== '') {
-        num1 = parseInt(screenCurrent.textContent);
+        num1 = parseFloat(screenCurrent.textContent);
         operator = op;
         screenLast.textContent = num1 + ' ' + op;
         resetScreenCurrent();
@@ -59,7 +61,18 @@ function calculate() {
 }
 
 function clearCalculator() {
+    clearButton.addEventListener('click', () => {
+        operatorSelected = false;
+        resetScreenCurrent();
+        resetScreenLast();
+    })
+}   
 
+function deleteNumbers() {
+    deleteButton.addEventListener('click', () => {
+        screenCurrent.textContent = screenCurrent.textContent.slice(0,-1);
+        num2 = parseFloat(screenCurrent.textContent);
+    })
 }
 
 
@@ -123,6 +136,4 @@ function operate(operator, num1, num2) {
 getNumButtons();
 getOperatorButtons();
 clearCalculator();
-
-
-// use switch statement for operate function
+deleteNumbers();
