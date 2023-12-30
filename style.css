@@ -26,13 +26,11 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-end;
-    flex-grow: 1;
     min-height: 130px;
     padding: 10px;
     margin-bottom: 15px;
     color: #FFF;
     background-color: #2B2D42;
-
     word-wrap: break-word;
     word-break: break-all;
 }
