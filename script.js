@@ -6,7 +6,7 @@ let result;
 
 let numButtons = document.querySelectorAll('.btn-num');
 let operatorButtons = document.querySelectorAll('.btn-operator');
-let equalsButton = document.querySelector('.btn-equals');
+let equalsButton = document.querySelector('#btn-equals');
 let clearButton = document.querySelector('#clear');
 let deleteButton = document.querySelector('#delete')
 let screenCurrent = document.querySelector('.screen-current');

@@ -86,7 +86,7 @@ body {
     height: 100px;
 }
 
-.btn-num, .btn-operator, .btn-point, .btn-equals {
+.btn-num, .btn-operator, #btn-point, #btn-equals {
     width: 100px;
     border: none;
     border-radius: 5px;
@@ -97,6 +97,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-.btn-num:hover, .btn-operator:hover, .btn-point:hover, .btn-equals:hover {
+.btn-num:hover, .btn-operator:hover, #btn-point:hover, #btn-equals:hover {
     background-color: #7e9fbe
 }
