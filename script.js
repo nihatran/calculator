@@ -3,6 +3,7 @@ let num1;
 let operator;
 let num2;
 let result;
+let operatorSelected = false;
 
 let numButtons = document.querySelectorAll('.btn-num');
 let operatorButtons = document.querySelectorAll('.btn-operator');
@@ -12,7 +13,17 @@ let deleteButton = document.querySelector('#delete')
 let screenCurrent = document.querySelector('.screen-current');
 let screenLast = document.querySelector('.screen-last');
 
-let operatorSelected = false;
+clearButton.addEventListener('click', clearCalculator);
+deleteButton.addEventListener('click', deleteNumbers);
+
+numButtons.forEach((button) => {
+    button.addEventListener('click', () => setNum(button.textContent))
+})
+
+operatorButtons.forEach((button) => {
+    button.addEventListener('click', () => setOperator(button.textContent))
+})
+
 
 function resetScreenCurrent() {
     screenCurrent.textContent = '';
@@ -20,18 +31,6 @@ function resetScreenCurrent() {
 
 function resetScreenLast() {
     screenLast.textContent = '';
-}
-
-function getNumButtons() {
-    numButtons.forEach((button) => {
-        button.addEventListener('click', () => setNum(button.textContent))
-    })
-}
-
-function getOperatorButtons() {
-    operatorButtons.forEach((button) => {
-        button.addEventListener('click', () => setOperator(button.textContent))
-    })
 }
 
 function setNum(number) {
@@ -131,9 +130,3 @@ function operate(operator, num1, num2) {
             }
     }
 }
-
-
-getNumButtons();
-getOperatorButtons();
-clearCalculator();
-deleteNumbers();
