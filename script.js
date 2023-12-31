@@ -73,7 +73,7 @@ function deleteNumbers() {
 }
 
 function displayPoint() {
-    if (screenCurrent.textContent !== '') {
+    if (screenCurrent.textContent !== '' && !screenCurrent.textContent.includes('.')) {
         screenCurrent.textContent += '.';
     }
 }
